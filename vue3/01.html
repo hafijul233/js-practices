@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Attribute Bind & Event Handling</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        html, body {
+            height: 100vh;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+        }
+
+        .text-green {
+            color: green;
+        }
+
+        .text-red {
+            color: red;
+        }
+
+        button {
+            padding: 0.875rem;
+            border: 2px solid #615f5f;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--    <button type="button" v-bind:class="buttonClasses">Click Me!</button>-->
+    <button type="button" :class="active ? 'text-red' : 'text-green'" v-on:click="toggleColor">Click Me!</button>
+
+</div>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                active: false
+            };
+        },
+        methods: {
+
+            toggleColor() {
+                this.active = !this.active;
+            }
+        }
+    }).mount("#app");
+</script>
+</body>
+</html>
