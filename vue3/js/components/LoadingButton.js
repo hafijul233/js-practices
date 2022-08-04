@@ -13,7 +13,7 @@ export default {
         'bg-green-500 hover:bg-green-700' : (type === 'green'),
         'bg-yellow-500 hover:bg-yellow-700' : (type === 'yellow'),
         'bg-lime-500 hover:bg-lime-700' : (type === 'lime'),
-        'is-loading' : (processing === true)
+        'is-loading' : (processing == true)
       }"
       :disabled="processing">
       <slot/>
@@ -22,10 +22,14 @@ export default {
 
     props: {
         type: {
+            type: String,
             default: 'blue'
         },
         processing: {
-            default: false
+            type: Boolean,
+            default: true
         }
     }
+
+
 }
