@@ -11,10 +11,10 @@
 <body class="h-full grid place-items-center">
 <div id="app">
 
-    <section v-show="assignments.filter((a) => !a.complete).length">
+    <section v-show="inProgressAssignments.length">
         <h2 class="font-bold mb-2">In Progress</h2>
         <ul>
-            <li v-for="assignment in assignments.filter((a) => !a.complete)" class="ml-2"
+            <li v-for="assignment in inProgressAssignments" class="ml-2"
                 :key="assignment.id">
                 {{ assignment.name }}
                 <input v-model="assignment.complete" type="checkbox">
@@ -22,10 +22,10 @@
         </ul>
     </section>
 
-    <section class="mt-8" v-show="assignments.filter((a) => a.complete).length">
+    <section v-show="completedAssignments.length" class="mt-8" >
         <h2 class="font-bold mb-2">Completed</h2>
         <ul>
-            <li v-for="assignment in assignments.filter((a) => a.complete)"
+            <li v-for="assignment in completedAssignments"
                 class="ml-2"
                 :key="assignment.id">
                 {{ assignment.name }}
@@ -33,7 +33,6 @@
             </li>
         </ul>
     </section>
-
 </div>
 <script>
     let app = {
@@ -44,6 +43,16 @@
                     {id: 2, name: "Add Login Added", complete: false},
                     {id: 3, name: "Read Documentations", complete: false},
                 ]
+            }
+        },
+        computed : {
+            completedAssignments() {
+                console.log("completedAssignments");
+                return this.assignments.filter((assignment) => assignment.complete);
+            },
+            inProgressAssignments() {
+                console.log("inProgressAssignments");
+                return this.assignments.filter((assignment) => ! assignment.complete);
             }
         }
     }
