@@ -15,8 +15,14 @@
 
 </div>
 <script type="module">
-    import App from "./js/components/App.js";
-    Vue.createApp(App).mount("#app");
+    import AlertButton from "./js/components/AlertButton.js";
+
+    let app = {
+        components: {
+            'alert-button': AlertButton
+        }
+    }
+    Vue.createApp(app).mount("#app");
 </script>
 </body>
 </html>
