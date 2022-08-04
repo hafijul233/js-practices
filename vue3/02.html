@@ -10,27 +10,39 @@
 </head>
 <body class="h-full grid place-items-center">
 <div id="app">
-    <section>
-        <h2 class="font-bold mb-2">Assignments</h2>
+
+    <section v-show="assignments.filter((a) => !a.complete).length">
+        <h2 class="font-bold mb-2">In Progress</h2>
         <ul>
-            <li v-for="assignment in assignments" class="ml-2">
+            <li v-for="assignment in assignments.filter((a) => !a.complete)" class="ml-2"
+                :key="assignment.id">
                 {{ assignment.name }}
                 <input v-model="assignment.complete" type="checkbox">
             </li>
         </ul>
-        <pre>
-            {{ assignments }}
-        </pre>
     </section>
+
+    <section class="mt-8" v-show="assignments.filter((a) => a.complete).length">
+        <h2 class="font-bold mb-2">Completed</h2>
+        <ul>
+            <li v-for="assignment in assignments.filter((a) => a.complete)"
+                class="ml-2"
+                :key="assignment.id">
+                {{ assignment.name }}
+                <input v-model="assignment.complete" type="checkbox">
+            </li>
+        </ul>
+    </section>
+
 </div>
 <script>
     let app = {
         data() {
             return {
                 assignments: [
-                    {name: "Finish Project", complete: false},
-                    {name: "Add Login Added", complete: false},
-                    {name: "Read Documentations", complete: false},
+                    {id: 1, name: "Finish Project", complete: false},
+                    {id: 2, name: "Add Login Added", complete: false},
+                    {id: 3, name: "Read Documentations", complete: false},
                 ]
             }
         }
