@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>One Vue Component Per File</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="h-full grid place-items-center">
+<div id="app">
+    <alert-button>SubmitV1</alert-button>
+    <alert-button>SubmitV2</alert-button>
+
+</div>
+<script type="module">
+    import AlertButton from "./js/components/AlertButton.js";
+
+    let app = {
+        components: {
+            'alert-button': AlertButton
+        }
+    }
+    Vue.createApp(app).mount("#app");
+</script>
+</body>
+</html>
