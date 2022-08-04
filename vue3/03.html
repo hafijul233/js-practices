@@ -10,49 +10,32 @@
 </head>
 <body class="h-full grid place-items-center">
 <div id="app">
+    <alert-button>SubmitV1</alert-button>
+    <alert-button>SubmitV2</alert-button>
 
-    <section v-show="inProgressAssignments.length">
-        <h2 class="font-bold mb-2">In Progress</h2>
-        <ul>
-            <li v-for="assignment in inProgressAssignments" class="ml-2"
-                :key="assignment.id">
-                {{ assignment.name }}
-                <input v-model="assignment.complete" type="checkbox">
-            </li>
-        </ul>
-    </section>
-
-    <section v-show="completedAssignments.length" class="mt-8" >
-        <h2 class="font-bold mb-2">Completed</h2>
-        <ul>
-            <li v-for="assignment in completedAssignments"
-                class="ml-2"
-                :key="assignment.id">
-                {{ assignment.name }}
-                <input v-model="assignment.complete" type="checkbox">
-            </li>
-        </ul>
-    </section>
 </div>
 <script>
     let app = {
-        data() {
-            return {
-                assignments: [
-                    {id: 1, name: "Finish Project", complete: false},
-                    {id: 2, name: "Add Login Added", complete: false},
-                    {id: 3, name: "Read Documentations", complete: false},
-                ]
-            }
-        },
-        computed : {
-            completedAssignments() {
-                console.log("completedAssignments");
-                return this.assignments.filter((assignment) => assignment.complete);
-            },
-            inProgressAssignments() {
-                console.log("inProgressAssignments");
-                return this.assignments.filter((assignment) => ! assignment.complete);
+        components: {
+            'alert-button': {
+                data() {
+                  return {
+                      process : false
+                  }
+                },
+                template: `
+             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-4 rounded m-2 disabled:cursor-not-allowed" :disabled="process" v-on:click="toggleButton">
+             <slot />
+             </button>
+             `,
+                mounted() {
+                    //alert("I am a Mounted Alert button");
+                },
+                methods : {
+                    toggleButton() {
+                        this.process = !this.process;
+                    }
+                }
             }
         }
     }
