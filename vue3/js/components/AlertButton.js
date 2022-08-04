@@ -11,8 +11,12 @@ export default {
       <slot/>
       </button>
     `,
-    mounted() {
-        //alert("I am a Mounted Alert button");
+
+    props: {
+        type: {
+            type: String,
+            default: 'blue'
+        }
     },
     methods: {
         toggleButton() {
