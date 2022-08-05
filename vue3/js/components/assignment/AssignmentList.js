@@ -1,22 +1,24 @@
 import AssignmentItem from "./AssignmentItem.js";
-import Tag from "../Tag.js";
+import AssignmentTag from "./AssignmentTag.js";
 
 export default {
     template: `
       <div v-show="filteredAssignment.length" class="m-4">
+
       <h2 class="font-bold mb-2 flex justify-between">
         {{ title }}
         <span>
           {{ filteredAssignment.length }}
         </span>
       </h2>
-      <div>
-        <tag
-            v-for="tag in tags"
-            :tag="tag"
-            @filterTagWise="currentActiveTag"
-        />
-      </div>
+
+      <assignment-tag
+          :initial-tags="assignments.map((a) => a.tag)"
+          @change="currentActiveTag"
+          :current-active-tag="activeTag"
+          
+      />
+
       <ul class="border border-gray-600 divide-gray-600 divide-y rounded">
         <assignment-item
             v-for="assignment in filteredAssignment"
@@ -25,12 +27,15 @@ export default {
         >
         </assignment-item>
       </ul>
-      </div>
-    `,
+      </div>`,
     data() {
         return {
-            activeTag: ''
+            activeTag: 'all'
         };
+    },
+    components: {
+        'assignment-item': AssignmentItem,
+        'assignment-tag': AssignmentTag
     },
     props: {
         title: {
@@ -48,24 +53,10 @@ export default {
         }
     },
     computed: {
-        tags() {
-            let tags = ["all"];
-            for (let key in this.assignments)
-                for (let tag of this.assignments[key].tags)
-                    tags.push(tag);
-            return new Set(tags);
-        },
-
         filteredAssignment() {
-            if (this.activeTag.length === 0 || this.activeTag === 'all') {
-                return this.assignments;
-            }
-
-            return this.assignments.filter(a => a.tags.includes(this.activeTag));
+            return (this.activeTag === 'all')
+                ? this.assignments
+                : this.assignments.filter(a => a.tag === this.activeTag);
         }
-    },
-    components: {
-        'assignment-item': AssignmentItem,
-        'tag': Tag
     }
 }
