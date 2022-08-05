@@ -11,18 +11,11 @@ export default {
         </span>
       </h2>
       <div>
-        <!--        <tag
-                    v-for="tag in tags"
-                    :tag="tag"
-                    @click="currentActiveTag(tag)"
-                />-->
-        <button
+        <tag
             v-for="tag in tags"
-            @click="activeTag = tag"
-            class="mx-1 my-3 border border-white hover:border-gray-600 hover:bg-white hover:text-gray-900 rounded px-2 py-1"
-        >
-          {{ tag }}
-        </button>
+            :tag="tag"
+            @filterTagWise="currentActiveTag"
+        />
       </div>
       <ul class="border border-gray-600 divide-gray-600 divide-y rounded">
         <assignment-item
@@ -57,19 +50,18 @@ export default {
     computed: {
         tags() {
             let tags = ["all"];
-
             for (let key in this.assignments)
                 for (let tag of this.assignments[key].tags)
                     tags.push(tag);
-
             return new Set(tags);
         },
+
         filteredAssignment() {
-            if (this.activeTag.length > 0 && this.activeTag !== 'all') {
-                return this.assignments.filter(a => a.tags.includes(this.activeTag));
-            } else {
+            if (this.activeTag.length === 0 || this.activeTag === 'all') {
                 return this.assignments;
             }
+
+            return this.assignments.filter(a => a.tags.includes(this.activeTag));
         }
     },
     components: {

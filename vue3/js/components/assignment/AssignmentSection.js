@@ -1,7 +1,7 @@
 import AssignmentList from "./AssignmentList.js";
 import AssignmentForm from "./AssignmentForm.js";
 
-export default {
+export default   {
     template: `
       <section class="space-y-6">
       <assignment-list
