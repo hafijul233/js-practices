@@ -21,7 +21,7 @@ export default {
                 {id: 1, name: "Finish Project", complete: false, tags : ['math']},
                 {id: 2, name: "Add Login Added", complete: false, tags : ['science']},
                 {id: 3, name: "Read Documentations", complete: true, tags : ['travel']},
-                {id: 4, name: "Research & Development", complete: false, tags : ['math', 'travel', 'science', 'reading']},
+                {id: 4, name: "Research & Development", complete: false, tags : ['math', 'science', 'reading']},
             ]
         }
     },
