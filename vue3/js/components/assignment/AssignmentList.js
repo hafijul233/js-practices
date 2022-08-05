@@ -11,7 +11,7 @@ export default {
         </span>
       </h2>
       <div>
-        <tag v-for="tag in tags" :tag="tag" />
+        <tag v-for="tag in tags" :tag="tag"/>
       </div>
       <ul class="border border-gray-600 divide-gray-600 divide-y rounded">
         <assignment-item
@@ -35,11 +35,17 @@ export default {
     },
     computed: {
         tags() {
-            return ['math', 'science', 'bangla'];
+            let tags = [];
+
+            for (let key in this.assignments)
+                for (let tag of this.assignments[key].tags)
+                    tags.push(tag);
+
+            return new Set(tags);
         }
     },
     components: {
         'assignment-item': AssignmentItem,
-        'tag' : Tag
+        'tag': Tag
     }
 }
