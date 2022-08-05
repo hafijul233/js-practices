@@ -21,6 +21,7 @@ export default {
                 {id: 1, name: "Finish Project", complete: false},
                 {id: 2, name: "Add Login Added", complete: false},
                 {id: 3, name: "Read Documentations", complete: true},
+                {id: 4, name: "Read Documentations", complete: false},
             ]
         }
     },

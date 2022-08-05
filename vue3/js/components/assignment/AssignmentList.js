@@ -1,11 +1,20 @@
 import AssignmentItem from "./AssignmentItem.js";
+import Tag from "../Tag.js";
 
 export default {
     template: `
       <div v-show="assignments.length" class="m-4">
-      <h2 class="font-bold mb-2">{{ title }}</h2>
+      <h2 class="font-bold mb-2 flex justify-between">
+        {{ title }}
+        <span>
+          {{ assignments.length }}
+        </span>
+      </h2>
+      <div>
+        <tag v-for="tag in tags" :tag="tag" />
+      </div>
       <ul class="border border-gray-600 divide-gray-600 divide-y rounded">
-        <assignment-item 
+        <assignment-item
             v-for="assignment in assignments"
             :key="assignment.id"
             :assignment="assignment"
@@ -24,7 +33,13 @@ export default {
             required: true
         }
     },
+    computed: {
+        tags() {
+            return ['math', 'science', 'bangla'];
+        }
+    },
     components: {
-        'assignment-item': AssignmentItem
+        'assignment-item': AssignmentItem,
+        'tag' : Tag
     }
 }
