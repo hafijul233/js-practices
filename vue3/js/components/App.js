@@ -4,11 +4,11 @@ import AssignmentSection from "./assignment/AssignmentSection.js";
 
 export default {
     template: `
-    <assignemt-section></assignemt-section>
+    <assignment-section></assignment-section>
     `,
     components: {
         'alert-button': AlertButton,
         'load-button': LoadingButton,
-        'assignemt-section' : AssignmentSection
+        'assignment-section' : AssignmentSection
     }
 }
