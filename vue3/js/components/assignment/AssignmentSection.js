@@ -1,9 +1,19 @@
 import AssignmentList from "./AssignmentList.js";
+import AssignmentForm from "./AssignmentForm.js";
 
 export default {
     template: `
-      <assignment-list title="In Progress" :assignments="filters.inProgress"></assignment-list>
-      <assignment-list title="Completed" :assignments="filters.completed"></assignment-list>
+      <section class="space-y-6">
+      <assignment-list
+          title="In Progress"
+          :assignments="filters.inProgress"/>
+
+      <assignment-list
+          title="Completed"
+          :assignments="filters.completed"/>
+
+      <assignment-form @addAssignment="addAssignment"/>
+      </section>
     `,
     data() {
         return {
@@ -14,8 +24,19 @@ export default {
             ]
         }
     },
+    methods: {
+        addAssignment(title) {
+
+            this.assignments.push({
+                name: title,
+                complete: false,
+                id: (this.assignments.length + 1)
+            })
+        }
+    },
     components: {
-        'assignment-list': AssignmentList
+        'assignment-list': AssignmentList,
+        'assignment-form': AssignmentForm
     },
     computed: {
         filters() {
