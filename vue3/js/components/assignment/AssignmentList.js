@@ -14,7 +14,7 @@ export default {
 
       <assignment-tag
           :initial-tags="assignments.map((a) => a.tag)"
-          @change="currentActiveTag"
+          @change="activeTag = $event"
           :current-active-tag="activeTag"
           
       />
@@ -45,11 +45,6 @@ export default {
         assignments: {
             type: Array,
             required: true
-        }
-    },
-    methods: {
-        currentActiveTag(tag) {
-            this.activeTag = tag;
         }
     },
     computed: {

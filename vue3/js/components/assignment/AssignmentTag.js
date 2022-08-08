@@ -2,12 +2,12 @@ export default {
     template: `
       <div class="flex gap-2">
       <button
-          @click="$emit('change', tag)"
           v-for="tag in tags"
+          @click="$emit('change', tag)"
           class="border mx-1 my-3 rounded px-2 py-1 hover:border-gray-600 hover:bg-white hover:text-gray-900"
           :class="{
-          'border-white text-white': tag !== currentActiveTag,
-          'border-blue text-blue': tag === currentActiveTag,
+          'border-white text-white': (tag != currentTag),
+          'border-blue text-blue': (tag == currentTag),
           }"
       >
         {{ tag }}
@@ -20,7 +20,7 @@ export default {
             required: true,
             default: ['all']
         },
-        currentActiveTag: {
+        currentTag: {
             type: String,
             default: 'all'
         }
@@ -28,9 +28,7 @@ export default {
 
     computed: {
         tags() {
-            const tags =  ['all', ...new Set(this.initialTags)];
-            console.log(tags);
-            return tags;
+            return ['all', ...new Set(this.initialTags)];
         },
     }
 }
