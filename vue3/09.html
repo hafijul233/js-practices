@@ -11,29 +11,10 @@
 </head>
 <body class="h-full grid place-items-center bg-gray-800 text-white">
 <div id="app">
-    <p>
-        <input type="text"
-               class="mt-2 text-black p-2 rounded"
-               v-model="greeting"
-        >
-    </p>
-    <p>
-        {{ greeting }} ({{ greeting.length }})
-    </p>
 </div>
-<script>
-    Vue.createApp({
-        data() {
-            return {
-                greeting: 'My name is Hafijul Islam'
-            };
-        },
-        mounted() {
-            setTimeout(() => {
-                this.greeting = "I am Software Engineer"
-            }, 3000);
-        }
-    }).mount("#app");
+<script type="module">
+    import App from "./js/components/App.js";
+    Vue.createApp(App).mount("#app");
 </script>
 </body>
 </html>
