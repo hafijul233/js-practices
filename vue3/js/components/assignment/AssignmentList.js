@@ -3,14 +3,16 @@ import AssignmentTag from "./AssignmentTag.js";
 
 export default {
     template: `
-      <section v-show="filteredAssignment.length" class="m-4 w-80">
-
-      <h2 class="font-bold mb-2 flex justify-between">
-        {{ title }}
-        <span>
-          {{ filteredAssignment.length }}
+      <section v-show="filteredAssignment.length" class="m-4 w-80 bg-gray-700 p-4 border-gray-600 rounded-lg">
+      <div class="flex justify-between items-start">
+        <h2 class="font-bold mb-2">
+          {{ title }}
+          <span>
+          ({{ filteredAssignment.length }})
         </span>
-      </h2>
+        </h2>
+        <button v-show="canHide">&times;</button>
+      </div>
 
       <assignment-tag
           v-model:activeTag="activeTag"
@@ -44,6 +46,10 @@ export default {
         assignments: {
             type: Array,
             required: true
+        },
+        canHide: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {

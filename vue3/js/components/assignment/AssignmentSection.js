@@ -7,20 +7,24 @@ export default {
 
       <assignment-list
           title="In Progress"
-          :assignments="filters.inProgress">
-        <assignment-form
-            @addAssignment="addAssignmentMethod"/>
+          :assignments="filters.inProgress"
+          :can-hide="false">
+        <div class="m-4">
+          <assignment-form
+              @addAssignment="addAssignmentMethod"/>
+        </div>
       </assignment-list>
 
       <assignment-list
           title="Completed"
-          :assignments="filters.completed"/>
+          :assignments="filters.completed"
+          can-hide/>
 
       </section>
     `,
     components: {
         'assignment-list': AssignmentList,
-        'assignment-form' : AssignmentForm
+        'assignment-form': AssignmentForm
     },
     data() {
         return {

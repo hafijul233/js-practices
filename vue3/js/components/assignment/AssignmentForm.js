@@ -1,6 +1,6 @@
 export default {
     template: `
-      <form class="m-4 text-black flex justify-center" @submit.prevent="add">
+      <form class="text-black flex justify-center" @submit.prevent="add">
       <label class="h2 block font-bold text-white hidden">New Assignment</label>
       <input
           class="text-black p-2 rounded-l-lg"
