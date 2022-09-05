@@ -1,13 +1,13 @@
 export default {
     template: `
-      <form class="m-4 text-black" @submit.prevent="add">
-      <label class="h2 block font-bold text-white">New Assignment</label>
+      <form class="m-4 text-black flex justify-center" @submit.prevent="add">
+      <label class="h2 block font-bold text-white hidden">New Assignment</label>
       <input
-          class="mt-2 text-black p-2 rounded-l-lg"
+          class="text-black p-2 rounded-l-lg"
           type="text"
           v-model="name"
           placeholder="New assignment ...">
-      <button type="submit" class="bg-white font-bold p-2 rounded-r-lg">+ Add</button>
+      <button type="submit" class="bg-white font-bold p-2 rounded-r-lg">Add</button>
       </form>`,
     data() {
         return {

@@ -3,7 +3,7 @@ import AssignmentTag from "./AssignmentTag.js";
 
 export default {
     template: `
-      <div v-show="filteredAssignment.length" class="m-4">
+      <section v-show="filteredAssignment.length" class="m-4 w-80">
 
       <h2 class="font-bold mb-2 flex justify-between">
         {{ title }}
@@ -25,7 +25,8 @@ export default {
         >
         </assignment-item>
       </ul>
-      </div>`,
+      <slot></slot>
+      </section>`,
     data() {
         return {
             activeTag: 'all'
