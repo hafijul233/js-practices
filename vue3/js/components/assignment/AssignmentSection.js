@@ -18,6 +18,10 @@ export default {
 
       </section>
     `,
+    components: {
+        'assignment-list': AssignmentList,
+        'assignment-form': AssignmentForm
+    },
     data() {
         return {
             assignments: [
@@ -39,10 +43,6 @@ export default {
             })
         }
     },
-    components: {
-        'assignment-list': AssignmentList,
-        'assignment-form': AssignmentForm
-    },
     computed: {
         filters() {
             return {
@@ -50,5 +50,11 @@ export default {
                 inProgress: this.assignments.filter((assignment) => !assignment.complete),
             }
         }
+    },
+    created() {
+        fetch('http://localhost:3001/assignments')
+            .then((response) => {
+
+            });
     }
 }
